@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Joguinho Jo Kem Pô"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewJogador"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="jogador:"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:text="Maquina"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        tools:text="Maquina" />
+
+    <TextView
+        android:id="@+id/textViewMaquina"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:text="Pedra"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Player"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:text="Pedra"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Resultado"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="91dp"
+        android:layout_marginTop="300sp"
+        android:paddingTop="35sp">
+
+        <Button
+            android:id="@+id/buttonPedra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="pedra" />
+
+        <Button
+            android:id="@+id/buttonPapel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="papel" />
+
+        <Button
+            android:id="@+id/buttonTesoura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="tesoura" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonAlterar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alterar Nome" />
+
+</LinearLayout>

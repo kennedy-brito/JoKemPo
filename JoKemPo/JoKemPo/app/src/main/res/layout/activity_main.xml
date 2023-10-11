@@ -1,19 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    android:padding="16dp"
+    android:textAlignment="center"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="101dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="4dp"
+        android:onClick="papelSelecionado"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+        app:layout_constraintHorizontal_bias="0.607"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@+id/textResult"
+        app:layout_constraintVertical_bias="0.181"
+        app:srcCompat="@drawable/papel" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Joguinho Jo Kem Pô"
+        android:layout_marginTop="4dp"
+        android:background="#F0ACBB"
+        android:text="JOGO Jo-Kem-Pô"
         android:textAlignment="center"
-        android:textSize="20sp" />
+        android:textColor="#0B0A0A"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="#FAD065"
+        android:text="Escolha do adversario:"
+        android:textAlignment="center"
+        android:textColor="#151414"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/imageResult"
+        android:layout_width="336dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:srcCompat="@drawable/padrao" />
+
+    <TextView
+        android:id="@+id/textResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="#A7CE87"
+        android:text="Escolha um objeto abaixo para inciar a partida!"
+        android:textAlignment="center"
+        android:textColor="#070707"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageResult" />
 
     <TextView
         android:id="@+id/textViewJogador"
@@ -21,92 +84,49 @@
         android:layout_height="35dp"
         android:text="jogador:"
         android:textAlignment="center"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="39dp"
-        android:text="Maquina"
-        android:textAlignment="center"
-        android:textAllCaps="false"
         android:textSize="20sp"
-        tools:text="Maquina" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonAlterar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintVertical_bias="0.178"
+        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textViewMaquina"
-        android:layout_width="match_parent"
-        android:layout_height="76dp"
-        android:text="Pedra"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="20sp" />
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="101dp"
+        android:layout_height="108dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:onClick="pedraSelecionada"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textResult"
+        app:layout_constraintVertical_bias="0.181"
+        app:srcCompat="@drawable/pedra" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Player"
-        android:textAlignment="center"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textViewPlayer"
-        android:layout_width="match_parent"
-        android:layout_height="61dp"
-        android:text="Pedra"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Resultado"
-        android:textAlignment="center"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textViewResult"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="20sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="91dp"
-        android:layout_marginTop="300sp"
-        android:paddingTop="35sp">
-
-        <Button
-            android:id="@+id/buttonPedra"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="pedra" />
-
-        <Button
-            android:id="@+id/buttonPapel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="papel" />
-
-        <Button
-            android:id="@+id/buttonTesoura"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="tesoura" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="101dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="tesouraSelecionada"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textResult"
+        app:layout_constraintVertical_bias="0.17"
+        app:srcCompat="@drawable/tesoura" />
 
     <Button
         android:id="@+id/buttonAlterar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Alterar Nome" />
+        android:layout_marginTop="148dp"
+        android:text="Alterar Nome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

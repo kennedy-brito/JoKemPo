@@ -7,15 +7,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jokempo.pessoa.Pessoa;
-
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    Pessoa jogador;
+    private Pessoa jogador;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,114 +26,95 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         /*
-        * TO DO:
-        * [X] PEGAR O PLAYER
-        * [] A CADA RODADA ATUALIZAR QTD VITORIAS E QTD DE PARTIDAS
-        * [x] PERMITIR MUDAR O NOME QUANDO CLICAR EM ALTERAR
-        * [] SABER QTD DE HORAS JOGADAS
-        * */
+         * TO DO:
+         * [X] PEGAR O PLAYER
+         * [] A CADA RODADA ATUALIZAR QTD VITORIAS E QTD DE PARTIDAS
+         * [x] PERMITIR MUDAR O NOME QUANDO CLICAR EM ALTERAR
+         * [] SABER QTD DE HORAS JOGADAS
+         * */
         jogador = (Pessoa) intent.getSerializableExtra("jogador-enviado");
 
         String nome = jogador.getNome();
 
+
         //declarando os objetos
-        Button buttonTesoura = findViewById(R.id.buttonTesoura);
-        Button buttonPapel = findViewById(R.id.buttonPapel);
-        Button buttonPedra = findViewById(R.id.buttonPedra);
-        Button buttonAlterar = findViewById(R.id.buttonAlterar); //
+        // Encontre os elementos no XML usando seus IDs
+        ImageView imageViewPedra = findViewById(R.id.imageView7);
+        ImageView imageViewPapel = findViewById(R.id.imageView8);
+        ImageView imageViewTesoura = findViewById(R.id.imageView9);
+        Button buttonAlterar = findViewById(R.id.buttonAlterar);
         TextView textViewNome = findViewById(R.id.textViewJogador);
+        TextView textResult = findViewById(R.id.textResult);
 
         //define o nome
         String texto = "Jogador: " + nome;
         textViewNome.setText(texto);
-        buttonTesoura.setOnClickListener(new View.OnClickListener(){
-
-            public void onClick(View v){
-                realizarTurno("tesoura");
-            }
-        });
-
-        buttonPapel.setOnClickListener(new View.OnClickListener(){
-
-                    public void onClick(View v){
-                        realizarTurno("papel");
-                    }
-                });
-
-        buttonPedra.setOnClickListener(new View.OnClickListener(){
-
-                    public void onClick(View v){
-                        realizarTurno("pedra");
-                    }
-                });
 
         buttonAlterar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, FormUsuario.class);
                 i.putExtra("jogador-alterado", jogador);
                 startActivity(i);
             }
         });
-
     }
 
-    public void realizarTurno(String player){
+    //Métodos para acionar os botões.
+    //View referecia os componentes de interface
+    public void pedraSelecionada(View view) {
+        this.itemSelecionado("pedra");
+        Toast.makeText(this, "Pedra selecionada.", Toast.LENGTH_SHORT).show(); //Toast mensagem na tela do usario
+    }
 
-        String[] escolhas = {"papel", "tesoura", "pedra"};
+    public void papelSelecionado(View view) {
+        this.itemSelecionado("papel");
+        Toast.makeText(this, "Papel selecionado.", Toast.LENGTH_SHORT).show(); //Toast mensagem na tela do usario
+    }
 
-        //gerando escolha da máquina
-        int index = new Random().nextInt(3);
-        String maquina = escolhas[index];
-        String vencedor = "";
+    public void tesouraSelecionada(View view) {
+        this.itemSelecionado("tesoura");
+        Toast.makeText(this, "Tesoura selecionada.", Toast.LENGTH_SHORT).show(); //Toast mensagem na tela do usario
+    }
 
-        if(player.equals("tesoura")){
-            vencedor = compararTesoura(maquina);
-        }else if(player.equals("pedra")){
-            vencedor = compararPedra(maquina);
-        }else{
-            vencedor = compararPapel(maquina);
+    public int itemSelecionado(String itemSelecionado) { //liga as imagens aos étodos de acionamento dos botões
+
+        ImageView imageResult = findViewById(R.id.imageResult);
+        TextView textResult = findViewById(R.id.textResult);
+
+
+        int item = new Random().nextInt(3); // elementos de escolha
+        String[] escolhas = {"pedra", "papel", "tesoura"}; // arrey para encontrar os elementos disponiveis no joguinho
+        String escolhaAdv = escolhas[item];
+
+
+
+        //Gerar as imagens resultantes randomicamente
+        if (item == 0) {
+            imageResult.setImageResource(R.drawable.pedra);
+        } else if (item == 1) {
+            imageResult.setImageResource(R.drawable.papel);
+        } else if (item == 2) {
+            imageResult.setImageResource(R.drawable.tesoura);
+        } else {
+            imageResult.setImageResource(R.drawable.padrao);
         }
 
-        exibirResultado(player, maquina, vencedor);
+        // if's para informar o resultado do jogo, possiveis situações do jogo
+        if ((escolhaAdv.equals("pedra") && itemSelecionado.equals("tesoura")) ||
+                (escolhaAdv.equals("papel") && itemSelecionado.equals("pedra")) ||
+                (escolhaAdv.equals("tesoura") && itemSelecionado.equals("papel"))) {
+            textResult.setText("Você perdeu!");
 
+        } else if ((itemSelecionado.equals("pedra") && escolhaAdv.equals("tesoura")) ||
+                (itemSelecionado.equals("papel") && escolhaAdv.equals("pedra")) ||
+                (itemSelecionado.equals("tesoura") && escolhaAdv.equals("papel"))){
+            textResult.setText("Você Ganhou!");
 
-
-    }
-
-    public void exibirResultado(String player, String maquina, String vencedor){
-        TextView textViewMaquina = findViewById(R.id.textViewMaquina);
-        TextView textViewPlayer = findViewById(R.id.textViewPlayer);
-        TextView textViewResult = findViewById(R.id.textViewResult);
-
-        textViewPlayer.setText(player);
-        textViewMaquina.setText(maquina);
-        textViewResult.setText(vencedor);
-    }
-    public String compararTesoura(@NonNull String maquina){
-        if(maquina.equals("tesoura")){
-            return "empate";
-        } else if (maquina.equals("pedra")) {
-            return "você perdeu";
+        } else {
+            textResult.setText("Empate!");
         }
-        return "você ganhou";
-    }
 
-    public String compararPapel(String maquina){
-        if(maquina.equals("papel")){
-            return "empate";
-        } else if (maquina.equals("tesoura")) {
-            return "você perdeu";
-        }
-        return "você ganhou";
-    }
-
-    public String compararPedra(String maquina){
-        if(maquina.equals("pedra")){
-            return "empate";
-        } else if (maquina.equals("papel")) {
-            return "você perdeu";
-        }
-        return "você ganhou";
+        return item;
     }
 }

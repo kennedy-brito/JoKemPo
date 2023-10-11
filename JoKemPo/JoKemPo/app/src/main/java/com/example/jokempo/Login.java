@@ -113,9 +113,8 @@ public class Login extends AppCompatActivity {
                     if (pessoa != null) {
 
                         double qtdPartidas = pessoa.getQtdPartidas();
-                        double qtdVitorias = pessoa.getQtdVitorias();
 
-                        double taxaVitorias = qtdVitorias/qtdPartidas;
+                        double taxaVitorias = pessoa.getTaxaVitorias();
 
                         if(qtdPartidas == 0){
                             taxaVitorias = 0;

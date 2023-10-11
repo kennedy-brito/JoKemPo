@@ -12,13 +12,14 @@ import java.util.ArrayList;
 
 public class PessoaDao extends SQLiteOpenHelper {
 
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
     private static final String NOME_BANCO = "DBJogador.db";
     private static final String TABELA = "Jogador";
     private static final String ID = "Id";
     private static final String NOME = "Nome";
     private static final String PARTIDAS = "Partidas";
     private static final String VITORIAS = "Vitorias";
+    private static final String TAXA_VITORIAS = = "taxaVitorias"
     private static final String TEMPO_JOGO = "tempoJogo";
 
 
@@ -30,7 +31,8 @@ public class PessoaDao extends SQLiteOpenHelper {
                 + NOME + " TEXT, "
                 + PARTIDAS + " integer, "
                 + VITORIAS + " integer, "
-                + TEMPO_JOGO + " integer"
+                + TEMPO_JOGO + " integer,"
+                + TAXA_VITORIAS + " decimal(10,2)"
                 + ");";
         sqLiteDatabase.execSQL(sql);
     }
@@ -51,6 +53,7 @@ public class PessoaDao extends SQLiteOpenHelper {
         values.put(VITORIAS, p.getQtdVitorias());
         values.put(PARTIDAS, p.getQtdPartidas());
         values.put(TEMPO_JOGO, p.getHorasJogadas());
+        values.put(TAXA_VITORIAS, p.getTaxaVitorias());
 
         retornoDB = getWritableDatabase().insert(TABELA, null, values);
 
@@ -78,6 +81,7 @@ public class PessoaDao extends SQLiteOpenHelper {
         //informa a coluna e o novo valor
         values.put(PARTIDAS, p.getQtdPartidas());
         values.put(VITORIAS, p.getQtdVitorias());
+        values.put(TAXA_VITORIAS, p.getTaxaVitorias());
 
         String[] args = {String.valueOf(p.getId())};
         retornoDB = getWritableDatabase().update(TABELA, values, "id=?", args);
@@ -97,7 +101,7 @@ public class PessoaDao extends SQLiteOpenHelper {
 
     public ArrayList<Pessoa> selectAllPessoa(){
         String[] coluns = {ID, NOME, PARTIDAS, VITORIAS, TEMPO_JOGO};
-        Cursor cursor = getWritableDatabase().query(TABELA, coluns, null,null, null, null, "Vitorias DESC", null);
+        Cursor cursor = getWritableDatabase().query(TABELA, coluns, null,null, null, null, TAXA_VITORIAS + " DESC", null);
 
         ArrayList<Pessoa> listPessoa = new ArrayList<>();
 

@@ -8,6 +8,7 @@ public class Pessoa implements Serializable {
     private String nome;
     private int qtdPartidas;
     private int qtdVitorias;
+    private float taxaVitorias;
     private int horasJogadas;
     //taxa de vitorias será calculada pela qtdVitorias/qtdPartidas
     //TO-DO
@@ -53,5 +54,13 @@ public class Pessoa implements Serializable {
 
     public void setHorasJogadas(int horasJogadas) {
         this.horasJogadas = horasJogadas;
+    }
+
+    public float getTaxaVitorias() {
+        return taxaVitorias;
+    }
+
+    public void setTaxaVitorias(float taxaVitorias) {
+        this.taxaVitorias = taxaVitorias;
     }
 }

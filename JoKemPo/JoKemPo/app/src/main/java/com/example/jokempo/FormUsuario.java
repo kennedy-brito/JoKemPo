@@ -84,6 +84,7 @@ public class FormUsuario extends AppCompatActivity {
         novaPessoa.setHorasJogadas(0);
         novaPessoa.setQtdVitorias(0);
         novaPessoa.setQtdPartidas(0);
+        novaPessoa.setTaxaVitorias(0.0F);
 
         PessoaDao pessoaDao = new PessoaDao(FormUsuario.this);
 

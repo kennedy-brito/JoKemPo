@@ -32,7 +32,7 @@ public class PessoaDao extends SQLiteOpenHelper {
                 + PARTIDAS + " integer, "
                 + VITORIAS + " integer, "
                 + TEMPO_JOGO + " integer,"
-                + TAXA_VITORIAS + " decimal(10,2)"
+                + TAXA_VITORIAS + " float"
                 + ");";
         sqLiteDatabase.execSQL(sql);
     }

@@ -114,6 +114,7 @@ public class PessoaDao extends SQLiteOpenHelper {
             p.setQtdPartidas(cursor.getInt(2));
             p.setQtdVitorias(cursor.getInt(3));
             p.setHorasJogadas(cursor.getInt(4));
+            p.setTaxaVitorias(cursor.getFloat(5));
 
             listPessoa.add(p);
         }

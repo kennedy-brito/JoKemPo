@@ -19,7 +19,7 @@ public class PessoaDao extends SQLiteOpenHelper {
     private static final String NOME = "Nome";
     private static final String PARTIDAS = "Partidas";
     private static final String VITORIAS = "Vitorias";
-    private static final String TAXA_VITORIAS = = "taxaVitorias"
+    private static final String TAXA_VITORIAS = "taxaVitorias";
     private static final String TEMPO_JOGO = "tempoJogo";
 
 

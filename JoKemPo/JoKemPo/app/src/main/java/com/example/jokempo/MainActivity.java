@@ -97,13 +97,15 @@ public class MainActivity extends AppCompatActivity {
             imageResult.setImageResource(R.drawable.padrao);
         }
 
+
+        int qtdVitorias = jogador.getQtdVitorias();
+        int qtdPartidas = jogador.getQtdPartidas() + 1;
+        jogador.setQtdPartidas(qtdPartidas);
         // if's para informar o resultado do jogo, possiveis situações do jogo
         if ((escolhaAdv.equals("pedra") && itemSelecionado.equals("tesoura")) ||
                 (escolhaAdv.equals("papel") && itemSelecionado.equals("pedra")) ||
                 (escolhaAdv.equals("tesoura") && itemSelecionado.equals("papel"))) {
 
-            int qtdPartidas = jogador.getQtdPartidas() + 1;
-            jogador.setQtdPartidas(qtdPartidas);
             textResult.setText("Você perdeu!");
 
         } else if ((itemSelecionado.equals("pedra") && escolhaAdv.equals("tesoura")) ||
@@ -111,19 +113,22 @@ public class MainActivity extends AppCompatActivity {
                 (itemSelecionado.equals("tesoura") && escolhaAdv.equals("papel"))){
             textResult.setText("Você Ganhou!");
 
-            int qtdPartidas = jogador.getQtdPartidas() + 1;
-            int qtdVitorias = jogador.getQtdVitorias() + 1;
+            qtdVitorias += 1;
 
-            jogador.setQtdPartidas(qtdPartidas);
-            jogador.setQtdVitorias(qtdVitorias);
 
         } else {
             textResult.setText("Empate!");
-            int qtdPartidas = jogador.getQtdPartidas() + 1;
-            jogador.setQtdPartidas(qtdPartidas);
         }
-            PessoaDao pessoaDao = new PessoaDao(MainActivity.this);
-            pessoaDao.alterarQtdPartidas(jogador);
+
+        float taxaVitoria = Float.parseFloat(String.valueOf(qtdVitorias))/qtdPartidas;
+
+        jogador.setQtdPartidas(qtdPartidas);
+        jogador.setQtdVitorias(qtdVitorias);
+        jogador.setTaxaVitorias(taxaVitoria);
+
+        PessoaDao pessoaDao = new PessoaDao(MainActivity.this);
+        pessoaDao.alterarQtdPartidas(jogador);
+        pessoaDao.close();
 
         return item;
     }

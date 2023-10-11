@@ -116,14 +116,14 @@ public class Login extends AppCompatActivity {
 
                         float taxaVitorias = pessoa.getTaxaVitorias();
 
+                            alert(taxaVitorias + " ");
                         if(qtdPartidas == 0){
                             taxaVitorias = 0;
-                            alert(taxaVitorias + " " + pessoa.getQtdVitorias());
                         }
 
                         nomeTextView.setText("Nome: " + pessoa.getNome());
                         horasJogadasTextView.setText("Horas Jogadas: " + pessoa.getHorasJogadas());
-                        taxaVitoriasTextView.setText("Taxa de Vitórias: " + taxaVitorias*100 + "%");
+                        taxaVitoriasTextView.setText("Taxa de Vitórias: " + String.format("%.2f", taxaVitorias*100) + "%");
                     }
 
                     return view;

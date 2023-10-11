@@ -114,10 +114,11 @@ public class Login extends AppCompatActivity {
 
                         double qtdPartidas = pessoa.getQtdPartidas();
 
-                        double taxaVitorias = pessoa.getTaxaVitorias();
+                        float taxaVitorias = pessoa.getTaxaVitorias();
 
                         if(qtdPartidas == 0){
                             taxaVitorias = 0;
+                            alert(taxaVitorias + " " + pessoa.getQtdVitorias());
                         }
 
                         nomeTextView.setText("Nome: " + pessoa.getNome());

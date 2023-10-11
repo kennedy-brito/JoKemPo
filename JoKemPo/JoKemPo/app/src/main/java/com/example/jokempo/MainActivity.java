@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jokempo.pessoa.Pessoa;
+import com.example.jokempo.pessoaDao.PessoaDao;
+
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         Intent intent = getIntent();
         /*
@@ -38,13 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         //declarando os objetos
-        // Encontre os elementos no XML usando seus IDs
-        ImageView imageViewPedra = findViewById(R.id.imageView7);
-        ImageView imageViewPapel = findViewById(R.id.imageView8);
-        ImageView imageViewTesoura = findViewById(R.id.imageView9);
         Button buttonAlterar = findViewById(R.id.buttonAlterar);
         TextView textViewNome = findViewById(R.id.textViewJogador);
-        TextView textResult = findViewById(R.id.textResult);
 
         //define o nome
         String texto = "Jogador: " + nome;
@@ -104,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
         if ((escolhaAdv.equals("pedra") && itemSelecionado.equals("tesoura")) ||
                 (escolhaAdv.equals("papel") && itemSelecionado.equals("pedra")) ||
                 (escolhaAdv.equals("tesoura") && itemSelecionado.equals("papel"))) {
+
+            int qtdPartidas = jogador.getQtdPartidas() + 1;
+            jogador.setQtdPartidas(qtdPartidas);
             textResult.setText("Você perdeu!");
 
         } else if ((itemSelecionado.equals("pedra") && escolhaAdv.equals("tesoura")) ||
@@ -111,9 +111,19 @@ public class MainActivity extends AppCompatActivity {
                 (itemSelecionado.equals("tesoura") && escolhaAdv.equals("papel"))){
             textResult.setText("Você Ganhou!");
 
+            int qtdPartidas = jogador.getQtdPartidas() + 1;
+            int qtdVitorias = jogador.getQtdVitorias() + 1;
+
+            jogador.setQtdPartidas(qtdPartidas);
+            jogador.setQtdVitorias(qtdVitorias);
+
         } else {
             textResult.setText("Empate!");
+            int qtdPartidas = jogador.getQtdPartidas() + 1;
+            jogador.setQtdPartidas(qtdPartidas);
         }
+            PessoaDao pessoaDao = new PessoaDao(MainActivity.this);
+            pessoaDao.alterarQtdPartidas(jogador);
 
         return item;
     }

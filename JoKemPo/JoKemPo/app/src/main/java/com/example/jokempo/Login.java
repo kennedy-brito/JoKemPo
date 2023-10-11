@@ -123,7 +123,7 @@ public class Login extends AppCompatActivity {
 
                         nomeTextView.setText("Nome: " + pessoa.getNome());
                         horasJogadasTextView.setText("Horas Jogadas: " + pessoa.getHorasJogadas());
-                        taxaVitoriasTextView.setText("Taxa de Vitórias: " + taxaVitorias + "%");
+                        taxaVitoriasTextView.setText("Taxa de Vitórias: " + taxaVitorias*100 + "%");
                     }
 
                     return view;

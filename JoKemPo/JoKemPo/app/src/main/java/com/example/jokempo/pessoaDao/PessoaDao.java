@@ -100,7 +100,7 @@ public class PessoaDao extends SQLiteOpenHelper {
     }
 
     public ArrayList<Pessoa> selectAllPessoa(){
-        String[] coluns = {ID, NOME, PARTIDAS, VITORIAS, TEMPO_JOGO};
+        String[] coluns = {ID, NOME, PARTIDAS, VITORIAS, TEMPO_JOGO, TAXA_VITORIAS};
         Cursor cursor = getWritableDatabase().query(TABELA, coluns, null,null, null, null, TAXA_VITORIAS + " DESC", null);
 
         ArrayList<Pessoa> listPessoa = new ArrayList<>();

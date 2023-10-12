@@ -3,9 +3,11 @@ package com.example.jokempo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,13 +22,16 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private Pessoa jogador;
-
+    long tempoInicio;
+    long tempoFim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
+
+        tempoInicio = SystemClock.uptimeMillis();
         /*
          * TO DO:
          * [X] PEGAR O PLAYER
@@ -131,5 +136,20 @@ public class MainActivity extends AppCompatActivity {
         pessoaDao.close();
 
         return item;
+    }
+
+    @Override
+    protected void onPause() {
+
+        tempoFim = SystemClock.uptimeMillis();
+        double horas = (double) ((tempoFim - tempoInicio)/1000.00) / 3600.00;
+        Toast.makeText(this, String.valueOf(horas), Toast.LENGTH_SHORT).show();
+        horas = horas + jogador.getHorasJogadas();
+        jogador.setHorasJogadas(horas);
+
+        PessoaDao pessoaDao = new PessoaDao(this);
+        pessoaDao.alterarHoras(jogador);
+        pessoaDao.close();
+        super.onPause();
     }
 }

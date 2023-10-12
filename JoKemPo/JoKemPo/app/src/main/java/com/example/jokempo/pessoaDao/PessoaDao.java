@@ -31,7 +31,7 @@ public class PessoaDao extends SQLiteOpenHelper {
                 + NOME + " TEXT, "
                 + PARTIDAS + " integer, "
                 + VITORIAS + " integer, "
-                + TEMPO_JOGO + " integer,"
+                + TEMPO_JOGO + " double,"
                 + TAXA_VITORIAS + " float"
                 + ");";
         sqLiteDatabase.execSQL(sql);
@@ -122,5 +122,17 @@ public class PessoaDao extends SQLiteOpenHelper {
         return listPessoa;
     }
 
+public long alterarHoras(Pessoa p){
+        long retornoDB;
 
+        ContentValues value = new ContentValues();
+
+        value.put(TEMPO_JOGO, p.getHorasJogadas());
+
+        String[] args = {String.valueOf(p.getId())};
+        retornoDB = getWritableDatabase().update(TABELA, value, "id=?", args);
+
+
+        return retornoDB;
+}
 }

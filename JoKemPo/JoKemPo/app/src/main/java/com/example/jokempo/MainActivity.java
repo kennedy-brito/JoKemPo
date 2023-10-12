@@ -3,6 +3,7 @@ package com.example.jokempo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -138,17 +139,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
+    protected void onPause() {
 
         tempoFim = SystemClock.uptimeMillis();
-        double horas = (double) tempoFim - tempoInicio;
-
-        horas = (horas/1000.00) / 3600.00;
+        double horas = (double) ((tempoFim - tempoInicio)/1000.00) / 3600.00;
+        Toast.makeText(this, String.valueOf(horas), Toast.LENGTH_SHORT).show();
+        horas = horas + jogador.getHorasJogadas();
         jogador.setHorasJogadas(horas);
 
         PessoaDao pessoaDao = new PessoaDao(this);
         pessoaDao.alterarHoras(jogador);
-
-        super.onStop();
+        pessoaDao.close();
+        super.onPause();
     }
 }

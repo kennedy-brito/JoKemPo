@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 public class Login extends AppCompatActivity {
 
+    ListView listaVisivel;
     Pessoa jogador;
     PessoaDao pessoaDao;
     ArrayAdapter<Pessoa> arrayAdapterPessoa;
@@ -35,7 +36,7 @@ public class Login extends AppCompatActivity {
         //Botão que vai para a tela de cadastro
         Button buttonCadastro = findViewById(R.id.buttonCadastro);
         //Lista de jogadores
-        ListView listaVisivel = findViewById(R.id.listJogadores);
+        listaVisivel = findViewById(R.id.listJogadores);
         buttonCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
